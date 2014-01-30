@@ -1,29 +1,19 @@
 <h1>書籍一覧</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>価格</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @books.each do |book| %>
-      <tr>
-        <td><%= book.title %></td>
-        <td><%= book.price %></td>
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="books">
+  <% @books.each do |book| %>
+  <div class="book">
+    <h2 class="book__title"><%= book.title %></h2>
+    <p class="book__price">¥ <%= book.price %></p>
+    <ul class="book__actions">
+      <li class="book__action--show"><%= link_to '詳細', book %></li>
+      <li class="book__action--edit"><%= link_to '編集', edit_book_path(book) %></li>
+      <li class="book__action--delete"><%= link_to '削除', book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
+  </div><!-- .book -->
+  <% end %>
+</div><!-- .books -->
 
 <br>
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'New book', new_book_path %>
